@@ -1,0 +1,8 @@
+// 取得 步驟數字
+@mixin getStepNums($unm) {
+  @for $i from 1 through $unm {
+    &:nth-child(#{$i}) .stepper-panel__content__step--container::after {
+      content: "#{$i}";
+    }
+  }
+}

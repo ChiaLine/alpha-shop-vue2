@@ -1,0 +1,289 @@
+// 撰寫樣式
+.main {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  &__left {
+    width: 100%;
+    .stepper-panel {
+      width: 100%;
+      margin-bottom: 24px;
+      &__title {
+        margin-bottom: 24px;
+      }
+      &__content {
+        display: flex;
+        justify-content: space-between;
+        &__step {
+          @include getStepNums(3);
+          position: relative;
+          display: flex;
+          &--container {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin: 0 8px;
+            border: 1px solid var(--step-border-color);
+            color: var(--step-color);
+            text-align: center;
+          }
+          &--connect-line {
+            width: 55px;
+            height: 2px;
+            margin: 0 16px;
+            background-color: var(--black);
+            position: absolute;
+            top: calc(50%);
+            right: calc(100%);
+          }
+          &--taxt {
+            display: none;
+            color: var(--black);
+          }
+          &.checked .stepper-panel__content__step--container::after {
+            content: "\2714";
+          }
+        }
+      }
+    }
+    .form-panel {
+      &__content {
+        &__title {
+          margin-bottom: 16px;
+        }
+        &__row {
+          width: 100%;
+          .checkout__card-date {
+            display: flex;
+            justify-content: space-between;
+            &--left,
+            &--right {
+              width: 45%;
+            }
+          }
+        }
+        .address__row1 {
+          display: flex;
+          justify-content: space-between;
+          &__appellation {
+            width: 40%;
+          }
+          &__name {
+            width: 52%;
+          }
+        }
+        &__shipping {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 24px;
+          padding: 10px;
+          border: 1px solid var(--footer-background-color);
+          border-radius: 5px;
+          &__radio {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            // 新增
+            label {
+              display: flex;
+              width: 100%;
+              justify-content: space-between;
+              color: var(--black);
+            }
+          }
+          &:hover {
+            border: 1px solid var(--black);
+          }
+        }
+      }
+      &__botton {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 100%;
+        .address {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__right {
+    .cartcard {
+      margin-top: 32px;
+      background-color: var(--cart-background-color);
+      border: 1px solid var(--footer-background-color);
+      border-radius: 5px;
+      &__title {
+        display: none;
+      }
+      &__content {
+        &__card {
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 18px;
+          img {
+            width: 100px;
+            height: 100px;
+          }
+          &__text {
+            p {
+              text-align: end;
+              margin-bottom: 18px;
+            }
+            &__icons {
+              display: flex;
+              justify-content: end;
+              align-items: center;
+              img {
+                width: 26px;
+                height: 24px;
+                cursor: pointer;
+              }
+              span {
+                width: 53px;
+                text-align: center;
+              }
+            }
+          }
+          &__price {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+          }
+        }
+      }
+      &__freight,
+      &__total {
+        display: flex;
+        justify-content: space-between;
+        padding: 18px 0;
+        border-top: 1px solid var(--cartcard-border-top-color);
+        p {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+/********* 電腦版樣式 *********/
+@media screen and (min-width: 375px) {
+  .main {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column-gap: 30px;
+    align-items: center;
+    &__left {
+      grid-column: 1/7;
+      .stepper-panel {
+        margin-bottom: 34px;
+        &__content {
+          &__step {
+            &--taxt {
+              display: block;
+            }
+          }
+        }
+      }
+      .form-panel {
+        &__content {
+          &__title {
+            margin-bottom: 24px;
+          }
+          .address__row1 {
+            &__appellation {
+              width: 30%;
+            }
+            &__name {
+              width: 65%;
+            }
+          }
+          .address__row2,
+          .address__row3 {
+            display: flex;
+            justify-content: space-between;
+            &__phone,
+            &__email {
+              width: 48%;
+            }
+            &__area {
+              width: 30%;
+            }
+            &__address {
+              width: 65%;
+            }
+          }
+          &__row {
+            .checkout__card-date {
+              &--right {
+                width: 50%;
+              }
+            }
+          }
+          .checkout__row1,
+          .checkout__row2 {
+            width: 65%;
+          }
+          &__shipping {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding: 10px;
+            border: 1px solid var(--footer-background-color);
+            border-radius: 5px;
+            &__radio {
+              display: flex;
+              align-items: center;
+            }
+            &:hover {
+              border: 1px solid var(--black);
+            }
+          }
+        }
+        .address__botton {
+          justify-content: end;
+        }
+        &__botton {
+          position: static;
+          &--checked,
+          .address {
+            width: 174px;
+          }
+        }
+      }
+    }
+    &__right {
+      grid-column: 8/13;
+      .cartcard {
+        padding: 32px 24px;
+        margin-top: 0px;
+        &__title {
+          display: block;
+          margin-bottom: 32px;
+        }
+        &__content {
+          &__card {
+            position: relative;
+            justify-content: start;
+            align-items: flex-start;
+            margin-bottom: 34px;
+            &__text {
+              margin-left: 21px;
+              &__icons {
+                justify-content: start;
+              }
+            }
+            &__price {
+              position: absolute;
+              top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

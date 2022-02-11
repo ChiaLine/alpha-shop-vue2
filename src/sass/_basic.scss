@@ -1,0 +1,87 @@
+// 共同樣式
+html {
+    height: 100%;
+  }
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--body-background);
+}
+
+h1,
+h2,
+h3,
+li,
+p,
+span {
+  color: var(--black);
+}
+
+label {
+  color: var(--label-text-color);
+}
+
+input,
+select {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 8px 0 16px 0;
+  background-color: var(--input-background-color);
+  border: 1px solid var(--input-border-color);
+  color: var(--black);
+  border-radius: 5px;
+  text-indent: 16px;
+}
+
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+// 計步區 不透名度 step--opacity
+.opacity {
+  opacity: 0.3;
+}
+
+// 狀態顏色 step--color 
+.stepper-panel__content .stepper-panel__content__step .color {
+  background-color: var(--step-background-color);
+  border-color: #000;
+  color: #fff;
+}
+
+.form-panel__botton--top {
+  color: var(--black);
+}
+
+.form-panel__botton--checked {
+  width: 156px;
+  background-color: var(--button-background-color);
+  color: #fff;
+}
+
+button {
+  height: 46px;
+  margin-top: 24px;
+  border-radius: 5px;
+}
+// button按鈕 visibility-open 
+.visibility {
+  visibility: hidden;
+}
+
+// icon + - 按紐
+.up, .down {
+  width: 25px;
+  height: 25px;
+  background-color: var(--cart-icon-color);
+  border-radius: 50%;
+  text-align: center;
+  font-size: 15px;
+  cursor: pointer;
+}

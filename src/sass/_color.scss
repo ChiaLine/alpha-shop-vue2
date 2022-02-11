@@ -1,0 +1,43 @@
+// 新增專案共同顏色 ＆ 黑白切換
+:root {
+  --white: #fff;
+  --black: #000;
+  --step-color: #000;
+  --step-border-color: #000;
+  --step-background-color: #000;
+  --body-background: #fff;
+  --ul-background-color: #fff;
+  --button-background-color: #f67599;
+  --footer-background-color: #e5e5e5;
+  --label-text-color: #808080;
+  --font-text-color: #2a2a2a;
+  --input-border-color: #4a4a4a;
+  --input-background-color: #fff;
+  --cart-border-color: #f0f0f5;
+  --cart-icon-color: #f0f0f5;
+  --cart-background-color: #fff;
+  --cartcard-border-top-color: #f0f0f5;
+  --modal-container-background-color: #e5e4e4da;
+  --modal-background-color: #fff;
+}
+
+[data-theme="dark"] {
+  --step-color: #fff;
+  --step-border-color: #fff;
+  --step-background-color: #333333;
+  --black: rgba(255, 255, 255, 0.9);
+  --body-background: #000;
+  --ul-background-color: #000;
+  --footer-background-color: #333333;
+  --label-text-color: rgba(255, 255, 255, 0.5);
+  --font-text-color: #f00;
+  --input-border-color: rgba(255, 255, 255, 0.5);
+  --input-background-color: rgba(0, 0, 0, 0.5);
+  --cart-border-color: #f00;
+  --cart-icon-color: #808080;
+  --cart-background-color: #383838;
+  --cartcard-border-top-color: rgba(255, 255, 255, 0.2);
+  --modal-container-background-color: #1b1b1bda;
+  --modal-background-color: #0d0d0dda;
+}
+
