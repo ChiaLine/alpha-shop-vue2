@@ -1,14 +1,14 @@
 <template>
   <div class="modal-container">
     <div class="modal">      
-      <h2 class="mb-1">購物籃：</h2>
+      <h2 class="mb-1" v-show="cartTotal > 0">購物籃：</h2>
       <p v-for="(item) in cartCards" :key="item.id">
-        <samp v-show="item.quantity > 0">
+        <samp v-show="item.quantity > 0 ">
           {{ item.name }} {{ item.quantity }}件， ${{ item.priceTotal }}
         </samp>
       </p>
-      <p>運費: {{ freight > 0 ? freight : '免費' }}</p>
-      <p>小計: {{ cartTotal }}</p>
+      <p v-show="cartTotal > 0">運費: {{ freight > 0 ? freight : '免費' }}</p>
+      <p v-show="cartTotal > 0">小計: {{ cartTotal }}</p>
       <h2 class="mt-5 mb-1">結帳：</h2>
       <p v-for="(val, key, index) in formInfo" :key="index">
         {{ key }} : {{ val }}

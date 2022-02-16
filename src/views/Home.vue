@@ -143,13 +143,6 @@ export default {
     },
     pageStep() {
       // 改變畫面上的路徑名稱
-      // if (this.page === 1) {
-      //   this.$router.push({ name: "1" });
-      // } else if (this.page === 2) {
-      //   this.$router.push({ name: "2" });
-      // } else if (this.page === 3) {
-      //   this.$router.push({ name: "3" });
-      // }
       this.$router.push({ name: this.page});
     },
     afterPageChange() {
