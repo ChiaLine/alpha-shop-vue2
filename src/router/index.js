@@ -14,12 +14,13 @@ const routes = [
   {
     path: '/home',
     name: 'home',
+    redirect: '/home/1',
     component: Home,
     children: [
       {
         path: '1',
         name: '1',
-        component: () => import('../components/Form1.vue')
+        component: () => import('../components/Form1.vue'),
       },
       {
         path: '2',

@@ -1,20 +1,18 @@
 <template>
   <main class="main">
     <div class="main__left">
-      <Stepper :toggle-form-step="toggleFormStep" />
-      <Form1 v-show="Page === 1" :formInfo="formInfo" />
-      <Form2
-        v-show="Page === 2"
+      <Stepper :page="page" />
+      <router-view
         :formInfo="formInfo"
         @after-add-freight="afterAddFreight"
         @after-free-freight="afterFreeFreight"
+        @page-change="afterPageChange"
       />
-      <Form3 v-show="Page === 3" :formInfo="formInfo" />
       <Button
-        :toggle-form-step="toggleFormStep"
+        :page="page"
         @after-bottom-form="afterBottomForm(), saveLocalStorage(), pageStep()"
         @after-top-form="afterTopForm(), pageStep()"
-        @after-confirm-form=" afterConfirmForm(), saveLocalStorage() "
+        @after-confirm-form="afterConfirmForm(), saveLocalStorage()"
       />
     </div>
     <div class="main__right">
@@ -30,19 +28,14 @@
 <script>
 import { v4 as uuidv4 } from "uuid";
 import Stepper from "../components/Stepper.vue";
-import Form1 from "../components/Form1.vue";
-import Form2 from "../components/Form2.vue";
-import Form3 from "../components/Form3.vue";
 import Button from "../components/Button.vue";
 import CartCard from "../components/CartCard.vue";
+// import { component } from 'vue/types/umd';
 
 export default {
   name: "Home",
   components: {
     Stepper,
-    Form1,
-    Form2,
-    Form3,
     Button,
     CartCard,
   },
@@ -70,7 +63,6 @@ export default {
         freight: 0,
         cartTotal: 0,
       },
-      toggleFormStep: 1,
       formInfo: {
         appellation: "",
         name: "",
@@ -84,12 +76,11 @@ export default {
         cardDate: "",
         cardCvcCcv: "",
       },
-      Page: Number(this.$route.name),
+      page: Number(this.$route.name),
     };
   },
   created() {
     // console.log("取得 localStorage 資料");
-    this.toggleFormStep = this.Page;
     this.formInfo =
       JSON.parse(localStorage.getItem("FORM_DATA")) || this.formInfo;
     this.cartCard =
@@ -121,12 +112,10 @@ export default {
       this.cartCard.cartTotal += this.cartCard.cards[index].price;
     },
     afterBottomForm() {
-      this.toggleFormStep += 1;
-      this.Page = this.toggleFormStep;
+      this.page += 1;
     },
     afterTopForm() {
-      this.toggleFormStep -= 1;
-      this.Page = this.toggleFormStep;
+      this.page -= 1;
     },
     afterFreeFreight() {
       this.cartCard.freight = 0;
@@ -138,7 +127,7 @@ export default {
     },
     afterShippingChecked(shippingName, shippingPrice) {
       this.cartCard.freight = shippingPrice;
-      if (shippingName === 'DHL 貨運') {
+      if (shippingName === "DHL 貨運") {
         this.cartCard.cartTotal += shippingPrice;
       } else {
         this.cartCard.cartTotal = shippingPrice;
@@ -146,13 +135,25 @@ export default {
     },
     afterConfirmForm() {
       const form = this.formInfo;
+      const cartCard = this.cartCard;
       for (let [name, value] of Object.entries(form)) {
         console.log(`${name}: ${value}`);
       }
-      this.$emit("after-show-modal", form);
+      this.$emit("after-show-modal", form, cartCard);
     },
     pageStep() {
-      this.$router.push({ name: this.toggleFormStep });
+      // 改變畫面上的路徑名稱
+      // if (this.page === 1) {
+      //   this.$router.push({ name: "1" });
+      // } else if (this.page === 2) {
+      //   this.$router.push({ name: "2" });
+      // } else if (this.page === 3) {
+      //   this.$router.push({ name: "3" });
+      // }
+      this.$router.push({ name: this.page});
+    },
+    afterPageChange() {
+      this.page = Number(this.$route.name);
     },
   },
 };

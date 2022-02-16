@@ -2,7 +2,7 @@
   <div class="form-panel__botton">
     <button
       class="form-panel__botton--top"
-      :class="{ visibility: toggleFormStep === 1 }"
+      :class="{ visibility: page === 1 }"
       type="button"
       @click.stop.prevent="handleTopButtonClick"
     >
@@ -11,7 +11,7 @@
     <button
       class="form-panel__botton--checked"
       type="button"
-      v-if="toggleFormStep === 3"
+      v-if="page === 3"
       @click.stop.prevent="handleConfirmButtonClick"
       data-toggle="modal" 
       data-target="#exampleModal"
@@ -33,22 +33,22 @@
 <script>
 export default {
   props: {
-    toggleFormStep: {
+    page: {
       type: Number,
       require: true,
     },
   },
   methods: {
     handleBottomButtonClick() {
-      if (this.toggleFormStep === 3) {
-        return;
-      }
+      // if (this.page === 3) {
+      //   return;
+      // }
       this.$emit("after-bottom-form");
     },
     handleTopButtonClick() {
-       if (this.toggleFormStep === 1) {
-        return;
-      }
+      //  if (this.page === 1) {
+      //   return;
+      // }
       this.$emit("after-top-form");
     },
     handleConfirmButtonClick() {

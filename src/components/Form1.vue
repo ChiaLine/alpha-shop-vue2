@@ -81,6 +81,9 @@ export default {
       require: true,
     }
   },
+  created() {
+    this.$emit('page-change')
+  },
   data() {
     return {
       cities: [

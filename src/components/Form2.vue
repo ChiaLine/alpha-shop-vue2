@@ -55,6 +55,9 @@ export default {
       },
     };
   },
+  created() {
+    this.$emit('page-change')
+  },
   methods: {
     handleShippingClick(shippingPrice) {
       if (shippingPrice === 0) {

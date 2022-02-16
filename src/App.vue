@@ -11,7 +11,10 @@
     <Footer :footer-logo="footerLogo"/> 
     <Modal
       v-if="showModal"
-      :formInfo="formInfo"
+      :form-info="formInfo"
+      :cart-cards="cartCards"
+      :freight="freight"
+      :cart-total="cartTotal"
       @after-delete-modal="deleteShowModal"
     />
   </div>
@@ -31,6 +34,9 @@ export default {
   },
   data() {
     return {
+      cartCards: [],
+      freight: 0,
+      cartTotal: 0,
       formInfo: {},
       dataTheme: '',
       headerLogo: 'https://i.imgur.com/WwqZCgv.png',
@@ -49,8 +55,11 @@ export default {
       this.headerLogo = 'https://i.imgur.com/WwqZCgv.png'
       this.footerLogo = this.headerLogo
     },
-    afterShowModal(form) {
+    afterShowModal(form, cartCard) {
       this.formInfo = form
+      this.cartCards = cartCard.cards
+      this.freight = cartCard.freight
+      this.cartTotal = cartCard.cartTotal
       this.showModal = true;
     },
     deleteShowModal() {

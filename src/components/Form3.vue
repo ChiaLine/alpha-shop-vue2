@@ -57,5 +57,8 @@ export default {
       require: true,
     }
   },
+  created() {
+    this.$emit('page-change')
+  },
 }
 </script>
